@@ -50,9 +50,13 @@ CONSTRUCTOR
 
 #### OPTIONS
 
-  * `key-type => Int|Str` Sets either one of the type objects(Int or Str) for keys which you use to insert items to the treap.
+  * `key-type => Int|Str`
 
-  * `order-by => 'asc'|'desc'` Sets key order 'asc' or 'desc' in the treap. Default is 'asc'.
+Sets either one of the type objects(Int or Str) for keys which you use to insert items to the treap.
+
+  * `order-by => 'asc'|'desc'`
+
+Sets key order 'asc' or 'desc' in the treap. Default is 'asc'.
 
 METHODS
 -------
@@ -69,11 +73,15 @@ Deletes the node associated with the key from the treap.
 
 Returns the value associated with the key in the treap. When it doesn't hit any keys, it returns type object Any.
 
+  * `my $node = $treap.find($key)`
+
+Returns the instance of the Algorithm::Treap::Node associated with the key in the treap. When it doesn't hit any keys, it returns type object Any.
+
   * `my $first-key = $treap.find-first-key()`
 
 Returns the first key in the treap.
 
-  * `my $last-key = find-last-key()`
+  * `my $last-key = $treap.find-last-key()`
 
 Returns the last key in the treap.
 
