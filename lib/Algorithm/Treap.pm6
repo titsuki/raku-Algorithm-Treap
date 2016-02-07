@@ -261,9 +261,11 @@ Algorithm::Treap is is a implementation of the Treap algorithm. Treap is the one
 =head4 OPTIONS
 
 =item C<<key-type => Int|Str>>
+
 Sets either one of the type objects(Int or Str) for keys which you use to insert items to the treap.
 
 =item C<<order-by => 'asc'|'desc'>>
+
 Sets key order 'asc' or 'desc' in the treap.
 Default is 'asc'.
 
@@ -283,11 +285,16 @@ Deletes the node associated with the key from the treap.
 Returns the value associated with the key in the treap.
 When it doesn't hit any keys, it returns type object Any.
 
+=item C<<my $node = $treap.find($key)>>
+
+Returns the instance of the Algorithm::Treap::Node associated with the key in the treap.
+When it doesn't hit any keys, it returns type object Any.
+				 
 =item C<<my $first-key = $treap.find-first-key()>>
 
 Returns the first key in the treap.
 
-=item C<<my $last-key = find-last-key()>>
+=item C<<my $last-key = $treap.find-last-key()>>
 
 Returns the last key in the treap.
 
