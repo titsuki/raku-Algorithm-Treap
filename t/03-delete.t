@@ -57,4 +57,19 @@ use Algorithm::Treap;
     is $treap.root.left-child.right-child.key, 2, "It should delete a root correctly";
 }
 
+{
+    my $treap = Algorithm::Treap.new(key-type => Int);
+    $treap.insert(0, 0, Num(1.0));
+    $treap.insert(1, 1, Num(0.9));
+    $treap.insert(2, 2, Num(0.8));
+    $treap.insert(3, 3, Num(0.7));
+    $treap.insert(4, 4, Num(0.6));
+    $treap.delete(3);
+
+    is $treap.root.key, 0, "It should delete a item in the non-binary-shaped treap correctly";
+    is $treap.root.right-child.key, 1, "It should delete a item in the non-binary-shaped treap correctly";
+    is $treap.root.right-child.right-child.key, 2, "It should delete a item in the non-binary-shaped treap correctly";
+    is $treap.root.right-child.right-child.right-child.key, 4, "It should delete a item in the non-binary-shaped treap correctly";
+}
+
 done-testing;
