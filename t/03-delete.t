@@ -66,10 +66,10 @@ use Algorithm::Treap;
     $treap.insert(4, 4, Num(0.6));
     $treap.delete(3);
 
-    is $treap.root.key, 0, "It should delete a item in the non-binary-shaped treap correctly";
-    is $treap.root.right-child.key, 1, "It should delete a item in the non-binary-shaped treap correctly";
-    is $treap.root.right-child.right-child.key, 2, "It should delete a item in the non-binary-shaped treap correctly";
-    is $treap.root.right-child.right-child.right-child.key, 4, "It should delete a item in the non-binary-shaped treap correctly";
+    is $treap.root.key, 0, "It should delete an item in the non-binary-shaped treap correctly";
+    is $treap.root.right-child.key, 1, "It should delete an item in the non-binary-shaped treap correctly";
+    is $treap.root.right-child.right-child.key, 2, "It should delete an item in the non-binary-shaped treap correctly";
+    is $treap.root.right-child.right-child.right-child.key, 4, "It should delete an item in the non-binary-shaped treap correctly";
 }
 
 done-testing;
