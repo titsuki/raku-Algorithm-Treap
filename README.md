@@ -41,7 +41,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-Algorithm::Treap is is a implementation of the Treap algorithm. Treap is the one of the self-balancing binary search tree. It employs a randomized strategy for maintaining balance.
+Algorithm::Treap is a implementation of the Treap algorithm. Treap is the one of the self-balancing binary search tree. It employs a randomized strategy for maintaining balance.
 
 CONSTRUCTOR
 -----------
