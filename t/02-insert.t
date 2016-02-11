@@ -41,11 +41,28 @@ use Algorithm::Treap;
     $treap.insert(3, 3, Num(0.52));
     $treap.insert(4, 4, Num(0.24));
     
-    is $treap.root.key, 1, "It should insert an item with keeping order";
-    is $treap.root.left-child.key, 0, "It should insert an item with keeping order";
-    is $treap.root.right-child.key, 3, "It should insert an item with keeping order";
-    is $treap.root.right-child.left-child.key, 2, "It should insert an item with keeping order";
-    is $treap.root.right-child.right-child.key, 4, "It should insert an item with keeping order";
+    is $treap.root.key, 1, "It should insert an item with keeping heap order";
+    is $treap.root.left-child.key, 0, "It should insert an item with keeping heap order";
+    is $treap.root.right-child.key, 3, "It should insert an item with keeping heap order";
+    is $treap.root.right-child.left-child.key, 2, "It should insert an item with keeping heap order";
+    is $treap.root.right-child.right-child.key, 4, "It should insert an item with keeping heap order";
+}
+
+{
+    my $treap = Algorithm::Treap.new(key-type => Int);
+    $treap.insert(0, 0, Num(1.0));
+    $treap.insert(1, 1, Num(0.9));
+    $treap.insert(2, 2, Num(0.8));
+    $treap.insert(3, 3, Num(0.7));
+    $treap.insert(4, 4, Num(0.6));
+    $treap.insert(3, 3, Num(0.5));
+
+    $treap.root.perl.say;
+    is $treap.root.key, 0, "It should overwrite an item with keeping heap order";
+    is $treap.root.right-child.key, 1, "It should overwrite an item with keeping heap order";
+    is $treap.root.right-child.right-child.key, 2, "It should overwrite an item with keeping heap order";
+    is $treap.root.right-child.right-child.right-child.key, 4, "It should overwrite an item with keeping heap order";
+    is $treap.root.right-child.right-child.right-child.left-child.key, 3, "It should overwrite an item with keeping heap order";
 }
 
 done-testing;
