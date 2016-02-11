@@ -57,7 +57,6 @@ use Algorithm::Treap;
     $treap.insert(4, 4, Num(0.6));
     $treap.insert(3, 3, Num(0.5));
 
-    $treap.root.perl.say;
     is $treap.root.key, 0, "It should overwrite an item with keeping heap order";
     is $treap.root.right-child.key, 1, "It should overwrite an item with keeping heap order";
     is $treap.root.right-child.right-child.key, 2, "It should overwrite an item with keeping heap order";
