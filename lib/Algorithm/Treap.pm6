@@ -67,8 +67,7 @@ method !insert($current is rw, $k, $v, Num $priority) {
     }
 
     if ($.eq.($k,$current.key)) {
-	undefine $current;
-	$current = self!insert($current, $k, $v, $priority);
+	die "Error: keys are duplicated";
     }
     elsif ($.lt.($k,$current.key)) {
 	$current.left-child = self!insert($current.left-child, $k, $v, $priority);
@@ -185,6 +184,10 @@ multi method insert($k, $v) {
     if (not ($k.WHAT === $!key-type)) {
 	die "Error: key type violation";
     }
+    if (self!find($!root, $k).defined) {
+	$!root = self!delete($!root, $k);
+    }
+
     $!root = self!insert($!root, $k, $v, rand);
 }
 
@@ -192,6 +195,10 @@ multi method insert($k, $v, $priority) {
     if (not ($k.WHAT === $!key-type)) {
 	die "Error: key type violation";
     }
+    if (self!find($!root, $k).defined) {
+	$!root = self!delete($!root, $k);
+    }
+
     $!root = self!insert($!root, $k, $v, $priority);
 }
 
