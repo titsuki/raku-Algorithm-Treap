@@ -46,7 +46,9 @@ Algorithm::Treap is a implementation of the Treap algorithm. Treap is the one of
 CONSTRUCTOR
 -----------
 
-  * `my $treap = Algorithm::Treap.new(%options)`
+### new
+
+    my $treap = Algorithm::Treap.new(%options);
 
 #### OPTIONS
 
@@ -61,27 +63,39 @@ Sets key order 'asc' or 'desc' in the treap. Default is 'asc'.
 METHODS
 -------
 
-  * `$treap.insert($key, $value)`
+### insert
+
+    $treap.insert($key, $value);
 
 Inserts the key-value pair to the treap. If the treap already has the same key, it overwrites existing one.
 
-  * `$treap.delete($key)`
+### delete
+
+    $treap.delete($key);
 
 Deletes the node associated with the key from the treap.
 
-  * `my $value = $treap.find-value($key)`
+### find-value
+
+    my $value = $treap.find-value($key);
 
 Returns the value associated with the key in the treap. When it doesn't hit any keys, it returns type object Any.
 
-  * `my $node = $treap.find($key)`
+### find
+
+    my $node = $treap.find($key);
 
 Returns the instance of the Algorithm::Treap::Node associated with the key in the treap. When it doesn't hit any keys, it returns type object Any.
 
-  * `my $first-key = $treap.find-first-key()`
+### find-first-key
+
+    my $first-key = $treap.find-first-key();
 
 Returns the first key in the treap.
 
-  * `my $last-key = $treap.find-last-key()`
+### find-last-key
+
+    my $last-key = $treap.find-last-key();
 
 Returns the last key in the treap.
 

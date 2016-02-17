@@ -263,7 +263,9 @@ Algorithm::Treap is a implementation of the Treap algorithm. Treap is the one of
 
 =head2 CONSTRUCTOR
 
-=item C<<my $treap = Algorithm::Treap.new(%options)>>
+=head3 new
+
+       my $treap = Algorithm::Treap.new(%options);
 
 =head4 OPTIONS
 
@@ -278,30 +280,42 @@ Default is 'asc'.
 
 =head2 METHODS
 
-=item C<<$treap.insert($key, $value)>>
+=head3 insert
+
+	$treap.insert($key, $value);
 
 Inserts the key-value pair to the treap.
 If the treap already has the same key, it overwrites existing one.
 
-=item C<<$treap.delete($key)>>
+=head3 delete
+
+	$treap.delete($key);
 
 Deletes the node associated with the key from the treap.
 
-=item C<<my $value = $treap.find-value($key)>>
+=head3 find-value
+
+       my $value = $treap.find-value($key);
 
 Returns the value associated with the key in the treap.
 When it doesn't hit any keys, it returns type object Any.
 
-=item C<<my $node = $treap.find($key)>>
+=head3 find
+
+       my $node = $treap.find($key);
 
 Returns the instance of the Algorithm::Treap::Node associated with the key in the treap.
 When it doesn't hit any keys, it returns type object Any.
 				 
-=item C<<my $first-key = $treap.find-first-key()>>
+=head3 find-first-key
+
+	my $first-key = $treap.find-first-key();
 
 Returns the first key in the treap.
 
-=item C<<my $last-key = $treap.find-last-key()>>
+=head3 find-last-key
+
+	my $last-key = $treap.find-last-key();
 
 Returns the last key in the treap.
 
