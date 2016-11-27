@@ -11,115 +11,115 @@ has Code $.eq;
 
 submethod BUILD(Str :$!order-by) {
     if ($!order-by.defined && $!order-by ne ('desc'|'asc')) {
-	die "Error: order-by option must be desc or asc (default: asc)"
+	    die "Error: order-by option must be desc or asc (default: asc)"
     }
     elsif (not $!order-by.defined) {
-	$!order-by = 'asc';
+	    $!order-by = 'asc';
     }
     if (none KeyT === Str|Int) {
-	die "Error: key is Str or Int"
+	    die "Error: key is Str or Int"
     }
     if (KeyT === Str) {
-	$!gt = sub (Str $lhs, Str $rhs) {
-	    return $lhs gt $rhs;
-	}
-	$!lt = sub (Str $lhs, Str $rhs) {
-	    return $lhs lt $rhs;
-	}
-	$!eq = sub (Str $lhs, Str $rhs) {
-	    return $lhs eq $rhs;
-	}
-	if ($!order-by eq 'desc') {
 	    $!gt = sub (Str $lhs, Str $rhs) {
-		return $lhs lt $rhs;
+	        return $lhs gt $rhs;
 	    }
 	    $!lt = sub (Str $lhs, Str $rhs) {
-		return $lhs gt $rhs;
+	        return $lhs lt $rhs;
 	    }
-	}
+	    $!eq = sub (Str $lhs, Str $rhs) {
+	        return $lhs eq $rhs;
+	    }
+	    if ($!order-by eq 'desc') {
+	        $!gt = sub (Str $lhs, Str $rhs) {
+		        return $lhs lt $rhs;
+	        }
+	        $!lt = sub (Str $lhs, Str $rhs) {
+		        return $lhs gt $rhs;
+	        }
+	    }
     }
     elsif (KeyT === Int) {
-	$!gt = sub (Int $lhs, Int $rhs) {
-	    return $lhs > $rhs;
-	}
-	$!lt = sub (Int $lhs, Int $rhs) {
-	    return $lhs < $rhs;
-	}
-	$!eq = sub (Int $lhs, Int $rhs) {
-	    return $lhs == $rhs;
-	}
-	if ($!order-by eq 'desc') {
 	    $!gt = sub (Int $lhs, Int $rhs) {
-		return $lhs < $rhs;
+	        return $lhs > $rhs;
 	    }
 	    $!lt = sub (Int $lhs, Int $rhs) {
-		return $lhs > $rhs;
+	        return $lhs < $rhs;
 	    }
-	}
+	    $!eq = sub (Int $lhs, Int $rhs) {
+	        return $lhs == $rhs;
+	    }
+	    if ($!order-by eq 'desc') {
+	        $!gt = sub (Int $lhs, Int $rhs) {
+		        return $lhs < $rhs;
+	        }
+	        $!lt = sub (Int $lhs, Int $rhs) {
+		        return $lhs > $rhs;
+	        }
+	    }
     }
 }
 
 method !insert($current is rw, $k, $v, Num $priority) {
     if (not $current.defined) {
-	$current = Algorithm::Treap::Node.new(key => $k, value => $v, priority => $priority);
-	return $current;
+	    $current = Algorithm::Treap::Node.new(key => $k, value => $v, priority => $priority);
+	    return $current;
     }
 
     if ($.eq.($k,$current.key)) {
-	die "Error: keys are duplicated";
+	    die "Error: keys are duplicated";
     }
     elsif ($.lt.($k,$current.key)) {
-	$current.left-child = self!insert($current.left-child, $k, $v, $priority);
+	    $current.left-child = self!insert($current.left-child, $k, $v, $priority);
 
-	if ($current.left-child.priority > $current.priority) {
-	    $current = self!right-rotate($current);
-	}
+	    if ($current.left-child.priority > $current.priority) {
+	        $current = self!right-rotate($current);
+	    }
     }
     else {
-	$current.right-child = self!insert($current.right-child, $k, $v, $priority);
+	    $current.right-child = self!insert($current.right-child, $k, $v, $priority);
 
-	if ($current.right-child.priority > $current.priority) {
-	    $current = self!left-rotate($current);
-	}
+	    if ($current.right-child.priority > $current.priority) {
+	        $current = self!left-rotate($current);
+	    }
     }
     return $current;
 }
 
 method !delete($current is rw, $k) {
     if (not $current.defined) {
-	return $current;
+	    return $current;
     }
     
     if ($.lt.($k,$current.key)) {
-	$current.left-child = self!delete($current.left-child, $k);
-	return $current;
+	    $current.left-child = self!delete($current.left-child, $k);
+	    return $current;
     }
     elsif ($.gt.($k,$current.key)) {
-	$current.right-child = self!delete($current.right-child, $k);
-	return $current;
+	    $current.right-child = self!delete($current.right-child, $k);
+	    return $current;
     }
 
     else {
-	if (not $current.left-child.defined) {
-	    return $current.right-child;
-	}
-	
-	elsif (not $current.right-child.defined) {
-	    return $current.left-child;
-	}
-	
-	else {
-	    if ($current.left-child.priority > $current.right-child.priority) {
-		$current = self!right-rotate($current);
-		$current.right-child = self!delete($current.right-child, $k);
-		return $current;
+	    if (not $current.left-child.defined) {
+	        return $current.right-child;
 	    }
+	    
+	    elsif (not $current.right-child.defined) {
+	        return $current.left-child;
+	    }
+	    
 	    else {
-		$current = self!left-rotate($current);
-		$current.left-child = self!delete($current.left-child, $k);
-		return $current;
+	        if ($current.left-child.priority > $current.right-child.priority) {
+		        $current = self!right-rotate($current);
+		        $current.right-child = self!delete($current.right-child, $k);
+		        return $current;
+	        }
+	        else {
+		        $current = self!left-rotate($current);
+		        $current.left-child = self!delete($current.left-child, $k);
+		        return $current;
+	        }
 	    }
-	}
     }
 }
 
@@ -143,13 +143,13 @@ method !find($current, $k) {
     return Any if (not $current.defined);
 
     if ($.lt.($k,$current.key)) {
-	return self!find($current.left-child, $k);
+	    return self!find($current.left-child, $k);
     }
     elsif ($.eq.($k,$current.key)) {
-	return $current;
+	    return $current;
     }
     else {
-	return self!find($current.right-child, $k);
+	    return self!find($current.right-child, $k);
     }
 }
 
@@ -157,7 +157,7 @@ method !find-first-key($root) {
     return Any if (not $root.defined);
     my $current = $root;
     while ($current.left-child.defined) {
-	$current = $current.left-child;
+	    $current = $current.left-child;
     }
     return $current.key;
 }
@@ -166,7 +166,7 @@ method !find-last-key($root) {
     return Any if (not $root.defined);
     my $current = $root;
     while ($current.right-child.defined) {
-	$current = $current.right-child;
+	    $current = $current.right-child;
     }
     return $current.key;
 }
@@ -181,10 +181,10 @@ method find-last-key() {
 
 multi method insert($k, $v) {
     if (not ($k.WHAT === KeyT)) {
-	die "Error: key type violation";
+	    die "Error: key type violation";
     }
     if (self!find($!root, $k).defined) {
-	$!root = self!delete($!root, $k);
+	    $!root = self!delete($!root, $k);
     }
 
     $!root = self!insert($!root, $k, $v, rand);
@@ -192,10 +192,10 @@ multi method insert($k, $v) {
 
 multi method insert($k, $v, $priority) {
     if (not ($k.WHAT === KeyT)) {
-	die "Error: key type violation";
+	    die "Error: key type violation";
     }
     if (self!find($!root, $k).defined) {
-	$!root = self!delete($!root, $k);
+	    $!root = self!delete($!root, $k);
     }
 
     $!root = self!insert($!root, $k, $v, $priority);
@@ -208,7 +208,7 @@ method delete($k) {
 method find-value($k) {
     my $node = self!find($!root,$k);
     if ($node.defined) {
-	return $node.value;
+	    return $node.value;
     }
     return Any;
 }
