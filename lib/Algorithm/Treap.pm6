@@ -1,26 +1,25 @@
 use v6;
 use Algorithm::Treap::Node;
 
-unit class Algorithm::Treap;
+unit role Algorithm::Treap[::KeyT];
 
 has $.root;
 has Str $!order-by;
-has Mu $!key-type is required;
 has Code $.gt;
 has Code $.lt;
 has Code $.eq;
 
-submethod BUILD(Str :$!order-by,Mu :$!key-type) {
+submethod BUILD(Str :$!order-by) {
     if ($!order-by.defined && $!order-by ne ('desc'|'asc')) {
 	die "Error: order-by option must be desc or asc (default: asc)"
     }
     elsif (not $!order-by.defined) {
 	$!order-by = 'asc';
     }
-    if ((not ($!key-type === Str)) && (not ($!key-type === Int))) {
-	die "Error: key-type is Str or Int"
+    if (none KeyT === Str|Int) {
+	die "Error: key is Str or Int"
     }
-    if ($!key-type === Str) {
+    if (KeyT === Str) {
 	$!gt = sub (Str $lhs, Str $rhs) {
 	    return $lhs gt $rhs;
 	}
@@ -39,7 +38,7 @@ submethod BUILD(Str :$!order-by,Mu :$!key-type) {
 	    }
 	}
     }
-    elsif ($!key-type === Int) {
+    elsif (KeyT === Int) {
 	$!gt = sub (Int $lhs, Int $rhs) {
 	    return $lhs > $rhs;
 	}
@@ -181,7 +180,7 @@ method find-last-key() {
 }
 
 multi method insert($k, $v) {
-    if (not ($k.WHAT === $!key-type)) {
+    if (not ($k.WHAT === KeyT)) {
 	die "Error: key type violation";
     }
     if (self!find($!root, $k).defined) {
@@ -192,7 +191,7 @@ multi method insert($k, $v) {
 }
 
 multi method insert($k, $v, $priority) {
-    if (not ($k.WHAT === $!key-type)) {
+    if (not ($k.WHAT === KeyT)) {
 	die "Error: key type violation";
     }
     if (self!find($!root, $k).defined) {
@@ -229,7 +228,7 @@ Algorithm::Treap - randomized search tree
   use Algorithm::Treap;
 
   # store Int key
-  my $treap = Algorithm::Treap.new(key-type => Int);
+  my $treap = Algorithm::Treap[Int].new;
   $treap.insert(0, 0);
   $treap.insert(1, 10);
   $treap.insert(2, 20);
@@ -243,7 +242,7 @@ Algorithm::Treap - randomized search tree
   $treap.delete(4);
 
   # store Str key
-  my $treap = Algorithm::Treap.new(key-type => Str);
+  my $treap = Algorithm::Treap[Str].new;
   $treap.insert('a', 0);
   $treap.insert('b', 10);
   $treap.insert('c', 20);
@@ -265,13 +264,11 @@ Algorithm::Treap is a implementation of the Treap algorithm. Treap is the one of
 
 =head3 new
 
-       my $treap = Algorithm::Treap.new(%options);
+       my $treap = Algorithm::Treap[::KeyT].new(%options);
+
+Sets either one of the type objects(Int or Str) for C<::KeyT> and some C<%options>, where C<::KeyT> is a type of insertion items to the treap.
 
 =head4 OPTIONS
-
-=item C<<key-type => Int|Str>>
-
-Sets either one of the type objects(Int or Str) for keys which you use to insert items to the treap.
 
 =item C<<order-by => 'asc'|'desc'>>
 
