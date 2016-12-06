@@ -15,10 +15,10 @@ submethod BUILD(TOrder :$!order-by) {
     if (not $!order-by.defined) {
 	    $!order-by = TOrder::ASC;
     }
-    if (none KeyT === Str|Int) {
+    if (none KeyT ~~ Str|Int) {
 	    die "Error: key is Str or Int"
     }
-    if (KeyT === Str) {
+    if (KeyT ~~ Str) {
 	    $!gt = sub (Str $lhs, Str $rhs) {
 	        return $lhs gt $rhs;
 	    }
@@ -37,7 +37,7 @@ submethod BUILD(TOrder :$!order-by) {
 	        }
 	    }
     }
-    elsif (KeyT === Int) {
+    elsif (KeyT ~~ Int) {
 	    $!gt = sub (Int $lhs, Int $rhs) {
 	        return $lhs > $rhs;
 	    }
@@ -178,10 +178,7 @@ method find-last-key() {
     return self!find-last-key($!root);
 }
 
-multi method insert($k, $v) {
-    if (not ($k.WHAT === KeyT)) {
-	    die "Error: key type violation";
-    }
+multi method insert(KeyT $k, $v) {
     if (self!find($!root, $k).defined) {
 	    $!root = self!delete($!root, $k);
     }
@@ -189,10 +186,7 @@ multi method insert($k, $v) {
     $!root = self!insert($!root, $k, $v, rand);
 }
 
-multi method insert($k, $v, $priority) {
-    if (not ($k.WHAT === KeyT)) {
-	    die "Error: key type violation";
-    }
+multi method insert(KeyT $k, $v, $priority) {
     if (self!find($!root, $k).defined) {
 	    $!root = self!delete($!root, $k);
     }
