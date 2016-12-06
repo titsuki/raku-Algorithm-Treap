@@ -54,9 +54,9 @@ Sets either one of the type objects(Int or Str) for `::KeyT` and some `%options`
 
 #### OPTIONS
 
-  * `order-by => 'asc'|'desc'`
+  * `order-by => TOrder::ASC|TOrder::DESC`
 
-Sets key order 'asc' or 'desc' in the treap. Default is 'asc'.
+Sets key order `TOrder::ASC` or `TOrder::DESC` in the treap. Default is `TOrder::ASC`.
 
 METHODS
 -------

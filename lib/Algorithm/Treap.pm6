@@ -3,18 +3,17 @@ use Algorithm::Treap::Node;
 
 unit role Algorithm::Treap[::KeyT];
 
+my enum TOrder is export <DESC ASC>;
+
 has $.root;
-has Str $!order-by;
+has TOrder $!order-by;
 has Code $.gt;
 has Code $.lt;
 has Code $.eq;
 
-submethod BUILD(Str :$!order-by) {
-    if ($!order-by.defined && $!order-by ne ('desc'|'asc')) {
-	    die "Error: order-by option must be desc or asc (default: asc)"
-    }
-    elsif (not $!order-by.defined) {
-	    $!order-by = 'asc';
+submethod BUILD(TOrder :$!order-by) {
+    if (not $!order-by.defined) {
+	    $!order-by = TOrder::ASC;
     }
     if (none KeyT === Str|Int) {
 	    die "Error: key is Str or Int"
@@ -29,7 +28,7 @@ submethod BUILD(Str :$!order-by) {
 	    $!eq = sub (Str $lhs, Str $rhs) {
 	        return $lhs eq $rhs;
 	    }
-	    if ($!order-by eq 'desc') {
+	    if ($!order-by == TOrder::DESC) {
 	        $!gt = sub (Str $lhs, Str $rhs) {
 		        return $lhs lt $rhs;
 	        }
@@ -48,7 +47,7 @@ submethod BUILD(Str :$!order-by) {
 	    $!eq = sub (Int $lhs, Int $rhs) {
 	        return $lhs == $rhs;
 	    }
-	    if ($!order-by eq 'desc') {
+	    if ($!order-by == TOrder::DESC) {
 	        $!gt = sub (Int $lhs, Int $rhs) {
 		        return $lhs < $rhs;
 	        }
@@ -270,10 +269,10 @@ Sets either one of the type objects(Int or Str) for C<::KeyT> and some C<%option
 
 =head4 OPTIONS
 
-=item C<<order-by => 'asc'|'desc'>>
+=item C<<order-by => TOrder::ASC|TOrder::DESC>>
 
-Sets key order 'asc' or 'desc' in the treap.
-Default is 'asc'.
+Sets key order C<TOrder::ASC> or C<TOrder::DESC> in the treap.
+Default is C<TOrder::ASC>.
 
 =head2 METHODS
 
