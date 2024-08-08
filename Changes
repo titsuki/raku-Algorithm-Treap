@@ -1,0 +1,72 @@
+Revision history for Algorithm::Treap
+
+{{$NEXT}}
+
+0.10.1  2024-08-08T23:20:13+09:00
+   - Fixes:
+      - Use zef instead of ecosystem
+   - Additions:
+   - Efficiency:
+
+0.10.0
+   - Fixes:
+      - [API Breaking Change] Use enum TOrder::ASC or enum TOrder::DESC as a argument of order-by option instead of 'desc' or 'asc'
+      - Improve the way to check type constraints
+   - Additions:
+      - Introduced semantic versioning (v0.08 is the previous version)
+   - Efficiency:
+
+0.9.0
+   - Fixes:
+      - [API Breaking Change] Use role Algorithm::Treap instead of class Algorithm::Treap
+      - Fix some indents
+      - Improve the documentation
+   - Additions:
+      - Introduced semantic versioning (v0.08 is the previous version)
+   - Efficiency:
+
+v0.08
+   - Fixes:
+      - Fix author info
+   - Additions:
+   - Efficiency:
+
+v0.07
+   - Fixes:
+      - Fix author info
+   - Additions:
+   - Efficiency:
+
+v0.06
+   - Fixes:
+      - Improve the documentation
+   - Additions:
+   - Efficiency:
+
+v0.05
+   - Fixes:
+      - Fix a bug when it inserts duplicate keys
+   - Additions:
+   - Efficiency:
+
+v0.04
+   - Fixes:
+      - Improve the documentation
+   - Additions:
+   - Efficiency:
+
+v0.03
+   - Fixes:
+      - Some typos
+   - Additions:
+      - Add tests for deletion of elements
+   - Efficiency:
+
+v0.02
+   - Fixes:
+      - Improve the documentation
+   - Additions:
+   - Efficiency:
+
+v0.01
+   - tagging version 0.01

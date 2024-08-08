@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/titsuki/p6-Algorithm-Treap.svg?branch=master)](https://travis-ci.org/titsuki/p6-Algorithm-Treap)
+[![Actions Status](https://github.com/titsuki/raku-Algorithm-Treap/actions/workflows/test.yml/badge.svg)](https://github.com/titsuki/raku-Algorithm-Treap/actions)
 
 NAME
 ====
@@ -115,3 +115,4 @@ Copyright 2016 titsuki
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 The algorithm is from Seidel, Raimund, and Cecilia R. Aragon. "Randomized search trees." Algorithmica 16.4-5 (1996): 464-497.
+

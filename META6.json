@@ -1,19 +1,26 @@
 {
-  "authors" : [
-    "titsuki"
+  "auth": "zef:titsuki",
+  "authors": [
+    "Itsuki Toyota"
   ],
-  "build-depends" : [ ],
-  "depends" : [ ],
-  "description" : "randomized search tree",
-  "name" : "Algorithm::Treap",
-  "license" : "Artistic-2.0",
-  "perl" : "6.c",
-  "provides" : {
-    "Algorithm::Treap" : "lib/Algorithm/Treap.pm6",
-    "Algorithm::Treap::Node" : "lib/Algorithm/Treap/Node.pm"
+  "build-depends": [
+  ],
+  "depends": [
+  ],
+  "description": "randomized search tree",
+  "license": "Artistic-2.0",
+  "name": "Algorithm::Treap",
+  "perl": "6.c",
+  "provides": {
+    "Algorithm::Treap": "lib/Algorithm/Treap.pm6",
+    "Algorithm::Treap::Node": "lib/Algorithm/Treap/Node.pm"
   },
-  "resources" : [ ],
-  "source-url" : "git://github.com/titsuki/p6-Algorithm-Treap.git",
-  "test-depends" : [ ],
-  "version" : "0.10.0"
+  "resources": [
+  ],
+  "source-url": "https://github.com/titsuki/raku-Algorithm-Treap.git",
+  "tags": [
+  ],
+  "test-depends": [
+  ],
+  "version": "0.10.1"
 }
