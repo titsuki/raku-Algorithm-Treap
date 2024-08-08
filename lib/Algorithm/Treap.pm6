@@ -1,7 +1,7 @@
 use v6;
-use Algorithm::Treap::Node:ver<0.10.1>:auth<zef:titsuki>;
+use Algorithm::Treap::Node:ver<0.10.2>:auth<zef:titsuki>;
 
-unit role Algorithm::Treap[::KeyT];
+unit role Algorithm::Treap:ver<0.10.2>:auth<zef:titsuki>[::KeyT];
 
 my enum TOrder is export <DESC ASC>;
 
