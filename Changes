@@ -2,6 +2,12 @@ Revision history for Algorithm::Treap
 
 {{$NEXT}}
 
+0.10.3  2024-08-08T23:27:26+09:00
+   - Fixes:
+      - Remove windows from support list
+   - Additions:
+   - Efficiency:
+
 0.10.2  2024-08-08T23:24:01+09:00
    - Fixes:
       - Add missing meta field
