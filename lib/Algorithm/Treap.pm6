@@ -1,5 +1,5 @@
 use v6;
-use Algorithm::Treap::Node;
+use Algorithm::Treap::Node:ver<0.10.1>:auth<zef:titsuki>;
 
 unit role Algorithm::Treap[::KeyT];
 

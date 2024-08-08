@@ -1,5 +1,5 @@
 use v6;
-unit class Algorithm::Treap::Node;
+unit class Algorithm::Treap::Node:ver<0.10.1>:auth<zef:titsuki>;
 
 has $.value is rw is required;
 has $.left-child is rw;
